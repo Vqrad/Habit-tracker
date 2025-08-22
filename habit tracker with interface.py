@@ -10,7 +10,6 @@ from datetime import date
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 
-# --- Database Setup ---
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -36,7 +35,6 @@ CREATE TABLE IF NOT EXISTS completions (
 """)
 db.commit()
 
-# --- Functions ---
 def add_habit(name):
     cursor.execute("INSERT INTO habits (name) VALUES (%s)", (name,))
     db.commit()
@@ -61,7 +59,6 @@ def show_progress():
         progress_text += str(hid) + " " + name + " - Completed " + str(days) + " days\n"
     messagebox.showinfo("Progress", progress_text if progress_text else "No habits yet!")
 
-# --- GUI Setup ---
 root = tk.Tk()
 root.title("Habit Tracker")
 root.geometry("300x250")
@@ -74,3 +71,4 @@ tk.Button(root, text="Show Progress", width=20, command=show_progress).pack(pady
 tk.Button(root, text="Exit", width=20, command=root.destroy).pack(pady=20)
 
 root.mainloop()
+
